@@ -1,0 +1,11 @@
+# Keep original high-resolution photographs local. The website uses the
+# optimized copies under assets/images/web/.
+assets/images/perga*.jpg
+assets/images/perga*.JPEG
+assets/images/bjkc_*.jpg
+assets/images/brezo_*.jpg
+assets/images/chamartin_*.jpg
+
+# Full-resolution local copies are retained for backup, but the published
+# website uses the optimized images under assets/images/web/.
+assets/images/full/
