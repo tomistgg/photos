@@ -15,6 +15,8 @@ The original named files remain in `assets/images/` and are ignored by Git. Only
 
 The manifest identifies tournaments from the source filename prefixes (`perga`, `bjkc`, `brezo`, `chamartin`, `junin`, and `zaragoza`) and distributes the groups throughout the gallery rather than displaying tournament blocks.
 
+Each photograph also has an invisible primary visual tag in `assets/js/tennis-photos.js`. The justified-row layout uses those tags to prevent matching subjects from touching vertically or horizontally while keeping every row and the bottom edge perfectly flush.
+
 ## Local preview
 
 ```powershell

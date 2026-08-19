@@ -44,10 +44,11 @@ button { color: inherit; font: inherit; }
 .site-head nav a:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
 
 .portfolio { padding: 0 1.7vw 9vw; }
-.contact-grid { column-count: 6; column-gap: 7px; }
-.photo-card { width: 100%; margin: 0 0 7px; display: inline-block; position: relative; overflow: hidden; vertical-align: top; break-inside: avoid; background: #151515; transition: opacity .25s ease; }
-.photo-card button { width: 100%; padding: 0; display: block; position: relative; overflow: hidden; border: 0; background: none; cursor: zoom-in; }
-.photo-card img { width: 100%; height: auto; object-fit: contain; filter: saturate(.94); transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s ease; }
+.contact-grid { display: flex; flex-direction: column; gap: 7px; }
+.photo-row { width: 100%; min-width: 0; display: flex; gap: 7px; overflow: hidden; }
+.photo-card { height: 100%; margin: 0; display: block; flex: 0 0 auto; position: relative; overflow: hidden; background: #151515; transition: opacity .25s ease; }
+.photo-card button { width: 100%; height: 100%; padding: 0; display: block; position: relative; overflow: hidden; border: 0; background: none; cursor: zoom-in; }
+.photo-card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.94); transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s ease; }
 .photo-card button:hover img { transform: scale(1.025); filter: saturate(1); }
 
 .viewer { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; color: white; background: #0a0b09; }
@@ -64,7 +65,6 @@ button { color: inherit; font: inherit; }
   .site-head nav { width: 100%; min-width: 0; padding: 12px 0 0; display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 20px; border-top: 1px solid rgba(255,255,255,.14); border-left: 0; }
   .site-head nav a { justify-self: end; }
   .portfolio { padding: 0 12px 90px; }
-  .contact-grid { column-count: 4; }
 }
 
 @media (max-width: 560px) {
@@ -73,7 +73,6 @@ button { color: inherit; font: inherit; }
   .site-head nav { display: grid; grid-template-columns: auto 1fr; align-items: center; }
   .site-head nav a { width: fit-content; margin: 0; justify-self: end; font-size: 11px; }
   .site-head nav span { font-size: 7px; }
-  .contact-grid { column-count: 3; }
   .viewer-inner { padding: 50px 12px 20px; }
 }
 
