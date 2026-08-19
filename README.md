@@ -1,6 +1,6 @@
 # Tomás Schiter — tennis photography portfolio
 
-A responsive, image-first portfolio presenting 139 tennis photographs.
+A responsive, image-first portfolio presenting 123 tennis photographs.
 
 Open `index.html` to view the site. No dependencies or build step are required.
 

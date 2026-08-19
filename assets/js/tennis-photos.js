@@ -302,6 +302,8 @@ window.TENNIS_PHOTOS = [
 ];
 
 (() => {
+  const removedPergaIds = new Set([14, 16, 18, 24, 27, 30]);
+
   const numberedSeries = ({ key, label, numbers, landscape = [], square = [] }) => {
     const landscapeSet = new Set(landscape);
     const squareSet = new Set(square);
@@ -321,20 +323,22 @@ window.TENNIS_PHOTOS = [
   const groups = [
     {
       key: 'perga',
-      items: window.TENNIS_PHOTOS.map((photo) => ({
-        ...photo,
-        tournament: 'perga',
-        shape: 'portrait'
-      }))
+      items: window.TENNIS_PHOTOS
+        .filter((photo) => !removedPergaIds.has(photo.id))
+        .map((photo) => ({
+          ...photo,
+          tournament: 'perga',
+          shape: 'portrait'
+        }))
     },
     {
       key: 'bjkc',
       items: numberedSeries({
         key: 'bjkc',
         label: 'Billie Jean King Cup',
-        numbers: [5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52],
-        landscape: [5, 7, 8, 9, 10, 14, 15, 16, 18, 19, 20, 21, 22, 25, 26, 28, 31, 33, 35, 46, 47, 51, 52],
-        square: [24, 27, 29, 30, 32, 37, 39, 40, 41, 42, 44, 45]
+        numbers: [5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+        landscape: [5, 7, 8, 9, 10, 14, 15, 16, 18, 19, 20, 21, 22, 25, 26, 28, 31, 33, 35, 46, 47, 51],
+        square: [24, 27, 29, 30, 32, 37, 39, 42, 44, 45]
       })
     },
     {
@@ -342,9 +346,9 @@ window.TENNIS_PHOTOS = [
       items: numberedSeries({
         key: 'brezo',
         label: 'Brezo',
-        numbers: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11],
+        numbers: [1, 3, 4, 5, 7, 8, 9, 10, 11],
         landscape: [3, 5, 7],
-        square: [1, 2, 4, 8, 9, 10, 11]
+        square: [1, 4, 8, 9, 10, 11]
       })
     },
     {
@@ -352,7 +356,7 @@ window.TENNIS_PHOTOS = [
       items: numberedSeries({
         key: 'chamartin',
         label: 'Chamartín',
-        numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        numbers: [1, 2, 3, 4, 5, 6, 7, 10, 11, 13],
         landscape: [4, 11, 13]
       })
     },
@@ -361,7 +365,7 @@ window.TENNIS_PHOTOS = [
       items: numberedSeries({
         key: 'junin',
         label: 'Junín',
-        numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
+        numbers: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
         landscape: [1, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
       })
     },
@@ -370,7 +374,7 @@ window.TENNIS_PHOTOS = [
       items: numberedSeries({
         key: 'zaragoza',
         label: 'Zaragoza',
-        numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        numbers: [2, 3, 4, 5, 6, 7, 8, 9]
       })
     }
   ];

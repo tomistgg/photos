@@ -1,14 +1,20 @@
 (() => {
   const photos = Array.isArray(window.TENNIS_PHOTOS) ? window.TENNIS_PHOTOS : [];
+  const dimensions = window.TENNIS_PHOTO_DIMENSIONS || {};
   const grid = document.querySelector('#contact-grid');
   if (!grid || !photos.length) return;
 
-  grid.innerHTML = photos.map((photo, index) => `
+  grid.innerHTML = photos.map((photo, index) => {
+    const fallback = photo.shape === 'landscape' ? [3, 2] : photo.shape === 'square' ? [1, 1] : [2, 3];
+    const [width, height] = dimensions[photo.src] || fallback;
+
+    return `
     <article class="photo-card ${photo.shape}">
       <button type="button" data-view-index="${index}" aria-label="Open ${photo.title}">
-        <img src="${photo.src}" alt="${photo.alt}" style="object-position:${photo.position}" loading="lazy">
+        <img src="${photo.src}" alt="${photo.alt}" width="${width}" height="${height}" style="object-position:${photo.position}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''}>
       </button>
-    </article>`).join('');
+    </article>`;
+  }).join('');
 
   if (!('HTMLDialogElement' in window)) return;
 
