@@ -35,6 +35,7 @@ button { color: inherit; font: inherit; }
 .identity-link { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; transition: opacity .2s ease; }
 .identity-link:hover { opacity: .72; }
 .camera-mark { width: 23px; height: 23px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.camera-mark-light { fill: currentColor; stroke: none; }
 .identity strong { font-size: 23px; font-weight: 600; letter-spacing: -.045em; text-transform: none; }
 .site-head nav { min-width: 270px; padding-left: 28px; display: flex; align-items: flex-start; flex-direction: column; gap: 7px; border-left: 1px solid rgba(255,255,255,.18); }
 .site-head nav a, .site-head nav span { text-decoration: none; }
@@ -43,13 +44,10 @@ button { color: inherit; font: inherit; }
 .site-head nav a:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
 
 .portfolio { padding: 0 1.7vw 9vw; }
-.contact-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 8vw; grid-auto-flow: dense; gap: 7px; }
-.photo-card { min-width: 0; min-height: 0; position: relative; overflow: hidden; background: #151515; transition: opacity .25s ease; }
-.photo-card.portrait { grid-row: span 3; }
-.photo-card.landscape { grid-column: span 2; grid-row: span 3; }
-.photo-card.square { grid-row: span 2; }
-.photo-card button { width: 100%; height: 100%; padding: 0; position: relative; overflow: hidden; border: 0; background: none; cursor: zoom-in; }
-.photo-card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.94); transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s ease; }
+.contact-grid { column-count: 6; column-gap: 7px; }
+.photo-card { width: 100%; margin: 0 0 7px; display: inline-block; position: relative; overflow: hidden; vertical-align: top; break-inside: avoid; background: #151515; transition: opacity .25s ease; }
+.photo-card button { width: 100%; padding: 0; display: block; position: relative; overflow: hidden; border: 0; background: none; cursor: zoom-in; }
+.photo-card img { width: 100%; height: auto; object-fit: contain; filter: saturate(.94); transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s ease; }
 .photo-card button:hover img { transform: scale(1.025); filter: saturate(1); }
 
 .viewer { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; color: white; background: #0a0b09; }
@@ -66,7 +64,7 @@ button { color: inherit; font: inherit; }
   .site-head nav { width: 100%; min-width: 0; padding: 12px 0 0; display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 20px; border-top: 1px solid rgba(255,255,255,.14); border-left: 0; }
   .site-head nav a { justify-self: end; }
   .portfolio { padding: 0 12px 90px; }
-  .contact-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 12vw; }
+  .contact-grid { column-count: 4; }
 }
 
 @media (max-width: 560px) {
@@ -75,7 +73,7 @@ button { color: inherit; font: inherit; }
   .site-head nav { display: grid; grid-template-columns: auto 1fr; align-items: center; }
   .site-head nav a { width: fit-content; margin: 0; justify-self: end; font-size: 11px; }
   .site-head nav span { font-size: 7px; }
-  .contact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 16vw; }
+  .contact-grid { column-count: 3; }
   .viewer-inner { padding: 50px 12px 20px; }
 }
 
