@@ -11,12 +11,21 @@
     return { photo, index, width, height };
   });
 
-  const cardMarkup = ({ entry, displayWidth }) => `
+  const responsiveSource = (src, width) => src.replace('/web/', `/responsive/${width}/`);
+  const eagerImageCount = window.innerWidth <= 560 ? 18 : 10;
+
+  const cardMarkup = ({ entry, displayWidth }) => {
+    const source480 = responsiveSource(entry.photo.src, 480);
+    const source960 = responsiveSource(entry.photo.src, 960);
+    const slotWidth = Math.max(1, Math.ceil(displayWidth));
+
+    return `
     <article class="photo-card ${entry.photo.shape}" data-category="${entry.photo.primaryTag}" style="width:${displayWidth}px">
       <button type="button" data-view-index="${entry.index}" aria-label="Open ${entry.photo.title}">
-        <img src="${entry.photo.src}" alt="${entry.photo.alt}" width="${entry.width}" height="${entry.height}" style="object-position:${entry.photo.position}" loading="${entry.index === 0 ? 'eager' : 'lazy'}" decoding="async"${entry.index === 0 ? ' fetchpriority="high"' : ''}>
+        <img src="${source480}" srcset="${source480} 480w, ${source960} 960w, ${entry.photo.src} ${entry.width}w" sizes="${slotWidth}px" alt="${entry.photo.alt}" width="${entry.width}" height="${entry.height}" style="object-position:${entry.photo.position}" loading="${entry.index < eagerImageCount ? 'eager' : 'lazy'}" decoding="async"${entry.index === 0 ? ' fetchpriority="high"' : ''}>
       </button>
     </article>`;
+  };
 
   const partitionRows = (ordered, availableWidth, targetHeight, gap) => {
     const count = ordered.length;
@@ -139,6 +148,21 @@
     return layoutRows(ordered, lengths, availableWidth, gap);
   };
 
+  let preloadObserver;
+  const warmUpcomingImages = () => {
+    if (!('IntersectionObserver' in window)) return;
+    preloadObserver?.disconnect();
+    preloadObserver = new IntersectionObserver((observed) => {
+      observed.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        target.loading = 'eager';
+        preloadObserver.unobserve(target);
+      });
+    }, { rootMargin: '150% 0px 250% 0px' });
+
+    grid.querySelectorAll('img[loading="lazy"]').forEach((image) => preloadObserver.observe(image));
+  };
+
   const renderGallery = () => {
     const gap = 7;
     const availableWidth = grid.clientWidth;
@@ -149,6 +173,7 @@
     grid.innerHTML = layout.rows
       .map((row) => `<div class="photo-row" style="height:${row.height}px">${row.items.map(cardMarkup).join('')}</div>`)
       .join('');
+    warmUpcomingImages();
   };
 
   renderGallery();
