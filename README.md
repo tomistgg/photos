@@ -1,6 +1,6 @@
 # Tomás Schiter — tennis photography portfolio
 
-A responsive, image-first portfolio presenting 123 tennis photographs.
+A responsive, image-first portfolio presenting 133 tennis photographs.
 
 Open `index.html` to view the site. No dependencies or build step are required.
 
@@ -20,7 +20,7 @@ After adding or replacing photographs in `assets/images/web/`, rebuild the respo
 python tools/build_responsive_images.py
 ```
 
-The manifest identifies tournaments from the source filename prefixes (`perga`, `bjkc`, `brezo`, `chamartin`, `junin`, and `zaragoza`) and distributes the groups throughout the gallery rather than displaying tournament blocks.
+The manifest identifies tournaments from the source filename prefixes (`perga`, `bjkc`, `brezo`, `chamartin`, `junin`, `zaragoza`, and `valencia`) and distributes the groups throughout the gallery rather than displaying tournament blocks.
 
 Each photograph also has an invisible primary visual tag in `assets/js/tennis-photos.js`. The justified-row layout uses those tags to prevent matching subjects from touching vertically or horizontally while keeping every row and the bottom edge perfectly flush.
 

@@ -426,7 +426,17 @@ window.TENNIS_PHOTOS = [
     'zaragoza_6': 'serve',
     'zaragoza_7': 'forehand',
     'zaragoza_8': 'serve',
-    'zaragoza_9': 'serve'
+    'zaragoza_9': 'serve',
+    'valencia_01': 'fist-pump',
+    'valencia_02': 'between-points',
+    'valencia_03': 'backhand',
+    'valencia_04': 'backhand',
+    'valencia_05': 'serve',
+    'valencia_06': 'between-points',
+    'valencia_07': 'doubles',
+    'valencia_08': 'serve',
+    'valencia_09': 'backhand',
+    'valencia_10': 'serve'
   };
 
   const tagPhoto = (photo) => {
@@ -514,6 +524,15 @@ window.TENNIS_PHOTOS = [
         key: 'zaragoza',
         label: 'Zaragoza',
         numbers: [2, 3, 4, 5, 6, 7, 8, 9]
+      })
+    },
+    {
+      key: 'valencia',
+      items: numberedSeries({
+        key: 'valencia',
+        label: 'Valencia',
+        numbers: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
+        landscape: ['01']
       })
     }
   ];
